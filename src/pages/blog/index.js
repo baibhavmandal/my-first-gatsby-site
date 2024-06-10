@@ -5,13 +5,14 @@ import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 
 const BlogPage = ({ data }) => {
+  console.log(data);
   return (
     <Layout pageTitle="My Blog Posts">
       {data.allMdx.nodes.map((node) => {
         return (
           <article key={node.id}>
             <h2>
-              <Link to={`/blog/${node.frontmatter.id}`}>
+              <Link to={`/blog/${node.frontmatter.slug}`}>
                 {node.frontmatter.title}
               </Link>
             </h2>
@@ -35,6 +36,7 @@ export const query = graphql`
         frontmatter {
           date(formatString: "MMMM D, YYYY")
           title
+          slug
         }
         id
         excerpt
